@@ -1,208 +1,116 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { useState } from "react";
-import Image from "next/image";
+import Link from "next/link"
+import { useState } from "react"
+import Image from "next/image"
+import ScrollToTopOnRefresh from "../webSystem/ScrollToTopOnRefresh"
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <header
-      className="
-        fixed top-0 left-0 z-50
-        w-full
-      "
-    >
-      <div
+    <header className="fixed top-4 left-0 z-50 w-full px-4 md:px-12">
+      <nav
         className="
-          max-w-6xl
-          mx-auto md:px-6
+          flex items-center justify-between
+          px-4 md:px-6 py-3
+          rounded-2xl
+          bg-white/5 backdrop-blur-xl
+          border border-white/10
         "
       >
-        <nav
-          className="
-            flex items-center justify-between
-            md:mt-6 mb-6 px-6 md:py-4
-            bg-black/30
-            rounded-2xl border-white/10
-            backdrop-blur-sm
-          "
-        >
-          {/* Logo */}
-          <Link
-            href="/"
-            className="
-              flex
-              tracking-wide
-              hover:opacity-80 transition
-            "
-          >
-            <div
-              className="
-                flex items-center
-                min-w-[50px] max-w-[120px] md:max-w-[150px]
-                pointer-events-none
-                gap-0
-              "
-            >
-              <Image
-                src="/signatureV1 (1) (1).png"
-                width={30}
-                height={60}
-                alt="signature"
-              />
-              <Image
-                src="/signatureV2 (1) (1).png"
-                width={130}
-                height={60}
-                alt="signature"
-              />
-            </div>
-          </Link>
+        {/* Logo */}
+        <Link onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }) }} href="/" className="flex items-center gap-1">
+          <Image
+            src="/signatureV1.png"
+            width={28}
+            height={40}
+            alt="signature"
+            priority
+          />
+          <Image
+            src="/signatureV2.png"
+            width={110}
+            height={40}
+            alt="signature"
+            priority
+          />
+        </Link>
 
-          {/* Desktop Links */}
-          <ul
-            className="
-              hidden md:flex items-center
-              px-6
-              text-sm text-slate-300
-              gap-8
-            "
-          >
-            <li>
+        {/* Desktop Links */}
+        <ul className="hidden md:flex items-center gap-8 text-sm">
+          {["skills", "projects", "about", "contact"].map((item) => (
+            <li key={item}>
               <Link
-                href="#projects"
+                href={`#${item}`}
                 className="
+                  relative text-slate-300
+                  transition-colors
                   hover:text-white
-                  transition-colors duration-200
+                  after:absolute after:left-0 after:-bottom-1
+                  after:h-px after:w-0 after:bg-purple-500
+                  after:transition-all after:duration-300
+                  hover:after:w-full
                 "
               >
-                <span
-                  className="
-                    text-purple-600 text-xl font-mono
-                  "
-                >
-                  #
-                </span>
-                Projects
+                {item}
               </Link>
             </li>
-            <li>
-              <Link
-                href="#about"
-                className="
-                  hover:text-white
-                  transition-colors duration-200
-                "
-              >
-                <span
-                  className="
-                    text-purple-600 text-xl font-mono
-                  "
+          ))}
+        </ul>
+
+        {/* Mobile button */}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden relative z-50 flex h-9 w-9 items-center justify-center rounded-full bg-white/10"
+          aria-label="Toggle menu"
+        >
+          <span
+            className={`absolute h-0.5 w-5 bg-white transition-all ${isMenuOpen ? "rotate-45" : "-translate-y-1.5"}`}
+          />
+          <span
+            className={`absolute h-0.5 w-5 bg-white transition-all ${isMenuOpen ? "opacity-0" : ""}`}
+          />
+          <span
+            className={`absolute h-0.5 w-5 bg-white transition-all ${isMenuOpen ? "-rotate-45" : "translate-y-1.5"}`}
+          />
+        </button>
+      </nav>
+
+      {/* Mobile Menu */}
+      <div
+        className={`md:hidden mt-3 transition-all duration-300 ${isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 pointer-events-none"
+          }`}
+      >
+        <div className="rounded-2xl bg-dark-bg-2/80 backdrop-blur-xl border border-white/10 p-6">
+          <ul className="flex flex-col gap-4 text-slate-300">
+            {["skills", "projects", "about"].map((item) => (
+              <li key={item}>
+                <Link
+                  href={`#${item}`}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block hover:text-white transition"
                 >
-                  #
-                </span>
-                About
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#contact"
-                className="
-                  hover:text-white
-                  transition-colors duration-200
-                "
-              >
-                <span
-                  className="
-                    text-purple-600 text-xl font-mono
-                  "
-                >
-                  #
-                </span>
-                Contact
-              </Link>
-            </li>
+                  {item}
+                </Link>
+              </li>
+            ))}
           </ul>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden flex flex-col gap-1.5 p-2 my-4 hover:opacity-70 transition"
-            aria-label="Toggle menu"
-          >
-            <span
-              className={`block h-0.5 w-6 bg-white transition-all duration-300 ${isMenuOpen ? "rotate-45 translate-y-2" : ""}`}
-            ></span>
-            <span
-              className={`block h-0.5 w-6 bg-white transition-all duration-300 ${isMenuOpen ? "opacity-0" : ""}`}
-            ></span>
-            <span
-              className={`block h-0.5 w-6 bg-white transition-all duration-300 ${isMenuOpen ? "-rotate-45 -translate-y-2" : ""}`}
-            ></span>
-          </button>
-        </nav>
-
-        {/* Mobile Menu */}
-        <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ${
-            isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-          }`}
-        >
-          <div
+          <Link
+            href="#contact"
+            onClick={() => setIsMenuOpen(false)}
             className="
-              mt-2 p-6
-              bg-dark-bg-2/70
-              rounded-2xl border border-white/10
-              backdrop-blur-md
+              mt-6 flex items-center justify-center
+              rounded-xl bg-purple-500/90
+              px-4 py-2 text-sm font-medium text-white
+              hover:bg-purple-500 transition
             "
           >
-            <ul
-              className="
-                flex flex-col
-                text-slate-300
-                gap-4
-              "
-            >
-              <li>
-                <Link
-                  href="#projects"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block hover:text-white transition-colors duration-200 text-sm"
-                >
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#about"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block hover:text-white transition-colors duration-200 text-sm"
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#contact"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block hover:text-white transition-colors duration-200 text-sm"
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-            <Link
-              href="#contact"
-              onClick={() => setIsMenuOpen(false)}
-              className="mt-4 flex items-center justify-center rounded-lg bg-purple-500 px-4 py-2 text-sm font-medium text-white hover:bg-purple-600 transition-colors duration-200 shadow-lg shadow-purple-500/20"
-            >
-              Let's talk
-            </Link>
-          </div>
+            Let’s talk
+          </Link>
         </div>
       </div>
     </header>
-  );
+  )
 }

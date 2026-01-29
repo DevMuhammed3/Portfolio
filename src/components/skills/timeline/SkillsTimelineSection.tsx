@@ -16,13 +16,13 @@ export default function SkillsTimelineSection() {
 
   const x = useTransform(
     scrollYProgress,
-    [0.2, 1],
+    [0, 0.85],
     ['100%', '-120%']
   )
 
   const lineOpacity = useTransform(
     scrollYProgress,
-    [0, 0.25, 0.95, 1],
+    [0, 0.5, 0.5, 1],
     [0, 1, 1, 0]
   )
 
