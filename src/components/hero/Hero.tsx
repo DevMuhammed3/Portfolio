@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import TypewriterText from "./TypewriterText";
-import SectionHeader from "../skills/timeline/SectionHeader";
 
 
 const DESCRIPTION =
@@ -15,13 +14,18 @@ function AnimatedRole({ text }: { text: string }) {
   return (
     <>
       I’m a {text}
-      <span className="animate-pulse">|</span>
+      <span className="ml-1 animate-pulse opacity-70">|</span>
     </>
   );
 }
 
 export default function Hero() {
-  const titles = ["Full-Stack Developer", "React Developer"];
+  const titles = [
+    "full-stack developer",
+    "react developer",
+    "problem solver",
+    "builder of web experiences",
+  ];
 
   const [text, setText] = useState("");
   const [index, setIndex] = useState(0);
@@ -49,7 +53,7 @@ export default function Hero() {
     }, speed);
 
     return () => clearTimeout(timeout);
-  }, [text, isDeleting, index]);
+  }, [text, isDeleting, index, titles]);
 
   return (
     <section className="flex items-center overflow-x-hidden min-h-screen pt-24 md:pt-0">
@@ -97,13 +101,14 @@ export default function Hero() {
               priority
               draggable={false}
               className="
-      max-w-[280px] sm:max-w-[360px] lg:max-w-[400px] min-w-[120px]
-      rounded-[25%]
-      grayscale hover:grayscale-0
-      contrast-110 brightness-95
-      transition duration-500
-      select-none pointer-events-none
-    "
+  max-w-[280px] sm:max-w-[360px] lg:max-w-[400px] min-w-[120px]
+  rounded-[25%]
+  grayscale hover:grayscale-0
+  hover:scale-[1.02]
+  contrast-110 brightness-95
+  transition-all duration-500
+  select-none pointer-events-none
+"
             />
 
             <div className="hidden md:block absolute bottom-[20%] right-[-5%]">
@@ -139,21 +144,7 @@ export default function Hero() {
         border-white/10
             "/>
 
-              <div
-                className="
-      relative
-      px-3 py-1.5
-      rounded-xl
-      bg-white/10
-      backdrop-blur-md
-      border border-white/10
-      text-xs text-slate-200
-      shadow-inner
-      animate-float
-    "
-              >
-                thinking…
-              </div>
+              <ThinkingBadge />
             </div>
 
           </div>
@@ -209,3 +200,34 @@ export default function Hero() {
     </section>
   );
 }
+
+
+function ThinkingBadge() {
+  return (
+    <motion.div
+      animate={{ opacity: [0.7, 1, 0.7] }}
+      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      className="
+        relative
+        px-3 py-1.5
+        rounded-xl
+        bg-purple-950/30
+        backdrop-blur-md
+        border border-white/10
+        text-xs text-slate-200
+        shadow-inner
+        select-none
+      "
+    >
+      thinking
+      <motion.span
+        className="ml-0.5"
+        animate={{ opacity: [0, 1, 0] }}
+        transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+      >
+        …
+      </motion.span>
+    </motion.div>
+  );
+}
+
