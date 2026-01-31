@@ -1,6 +1,6 @@
 export default function SectionHeader() {
   return (
-    <div id="skills" className="relative -mt-20 max-w-xl">
+    <div id="skills" className="relative -mt-20  max-w-7xl">
       <div className="mb-20 px-8 md:px-24">
         <h2 className="text-4xl md:text-5xl font-bold text-white">
           <span className="text-purple-600">/</span>Skills

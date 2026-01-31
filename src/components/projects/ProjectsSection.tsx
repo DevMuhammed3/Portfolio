@@ -1,4 +1,3 @@
-
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -38,7 +37,7 @@ export default function ProjectsSection() {
 
   const visibleProjects = showAll
     ? projectsData
-    : projectsData.slice(0, 2)
+    : projectsData.slice(0, 3)
 
 
   useEffect(() => {
@@ -57,7 +56,7 @@ export default function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="relative min-h-screen px-8 md:px-24 py-40"
+      className="relative mx-auto min-h-screen px-8 md:px-24 py-40"
     >
       {/* Header */}
       <div className="mb-24 max-w-2xl">
@@ -72,7 +71,7 @@ export default function ProjectsSection() {
       </div>
 
       {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20">
         <AnimatePresence>
           {visibleProjects.map((project) => (
             <motion.div
@@ -90,7 +89,7 @@ export default function ProjectsSection() {
 
       {/* Show More Button */}
 
-      {projectsData.length > 2 && (
+      {projectsData.length > 3 && (
         <div className="mt-24 flex justify-center">
           <button
             onClick={() => setShowAll((prev) => !prev)}

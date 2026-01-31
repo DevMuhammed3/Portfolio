@@ -13,6 +13,7 @@ export default function Navbar() {
       <nav
         className="
           flex items-center justify-between
+          mx-auto
           px-4 md:px-6 py-3
           rounded-2xl
           bg-white/5 backdrop-blur-xl
@@ -38,7 +39,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Links */}
-        <ul className="hidden md:flex items-center gap-8 text-sm">
+        <ul className="hidden md:flex items-center gap-8 text-lg">
           {["skills", "projects", "about", "contact"].map((item) => (
             <li key={item}>
               <Link

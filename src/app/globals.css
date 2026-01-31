@@ -80,8 +80,8 @@ button,
   position: fixed;
   top: -12px;
   left: -12px;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   border-radius: 9999px;
 
   background: rgba(124, 58, 237, 0.6);

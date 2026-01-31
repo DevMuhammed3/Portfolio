@@ -56,13 +56,13 @@ export default function Hero() {
   }, [text, isDeleting, index, titles]);
 
   return (
-    <section className="flex items-center overflow-x-hidden min-h-screen pt-24 md:pt-0">
+    <section className="flex mx-auto max-w-7xl items-center overflow-x-hidden min-h-screen pt-24 md:pt-0">
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute -top-40 -left-40 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-3xl animate-float" />
         <div className="absolute top-1/2 -right-40 w-[400px] h-[400px] bg-indigo-500/20 rounded-full blur-3xl animate-float-slow" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 items-center w-full max-w-6xl px-6 sm:mx-auto gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 items-center w-full px-6 sm:mx-auto gap-12">
 
         <motion.div
           initial={{ opacity: 0, x: -40 }}
