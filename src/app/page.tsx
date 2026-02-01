@@ -5,6 +5,7 @@ import SkillsTimelineSection from "@/components/skills/timeline/SkillsTimelineSe
 import MobileSkillsTimeline from "@/components/skills/timeline/MobileSkillsTimeline";
 import RootLayout from "./layout";
 import ProjectsSection from "@/components/projects/ProjectsSection";
+import ContactSection from "@/components/Contact/ContactSection";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
         </div>
 
         <ProjectsSection />
+        <ContactSection />
       </RootLayout>
     </main>
     // <TechDiagram />
