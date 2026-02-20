@@ -21,8 +21,7 @@ function AnimatedRole({ text }: { text: string }) {
 
 export default function Hero() {
   const titles = [
-    "full-stack developer",
-    "react developer",
+    "full-stack developer", "react developer",
     "problem solver",
     "builder of web experiences",
   ];
@@ -62,7 +61,7 @@ export default function Hero() {
         <div className="absolute top-1/2 -right-40 w-[400px] h-[400px] bg-indigo-500/20 rounded-full blur-3xl animate-float-slow" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 items-center w-full px-6 sm:mx-auto gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 items-center w-full px-10 sm:mx-auto gap-6 md:gap-8">
 
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -92,27 +91,33 @@ export default function Hero() {
 
           {/* Image */}
 
-          <div className="relative w-fit">
-            <Image
-              src="/MyPhoto.jpg"
-              alt="Mohamed portrait"
-              width={420}
-              height={520}
-              priority
-              draggable={false}
-              className="
-  max-w-[280px] sm:max-w-[360px] lg:max-w-[400px] min-w-[120px]
-  rounded-[25%]
-  grayscale hover:grayscale-0
-  hover:scale-[1.02]
-  contrast-110 brightness-95
-  transition-all duration-500
-  select-none pointer-events-none
-"
-            />
+          <div className="relative w-auto md:w-full flex justify-center sm:justify-start">
+            <div className="
+  relative
+  rounded-3xl
+  p-[2px]
+  bg-gradient-to-br from-purple-500/30 to-indigo-500/20
+hover:shadow-[0_0_60px_rgba(168,85,247,0.25)]
+transition-all duration-500
+mb-5
+">
+              <Image
+                src="/Muhammed.jpeg"
+                alt="Muhammad portrait"
+                width={360}
+                height={420}
+                priority
+                className="
+        rounded-3xl
+        w-[260px] sm:w-[320px]  lg:w-[360px]
+        object-cover
+      "
+              />
+            </div>
+          </div>
 
+          {/*
             <div className="hidden md:block absolute bottom-[20%] right-[-5%]">
-
               <span className=" 
             absolute -top-10 -left-5
         w-2 h-2
@@ -145,10 +150,10 @@ export default function Hero() {
             "/>
 
               <ThinkingBadge />
-            </div>
+      </div>
 
-          </div>
-
+    </div>
+                */}
 
           {/* Tablet Side Content */}
           <div className="hidden sm:flex md:hidden flex-col justify-center gap-4 ml-4">
@@ -160,12 +165,12 @@ export default function Hero() {
               {DESCRIPTION}
             </div>
           </div>
-        </motion.div>
+        </motion.div >
 
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
         >
           {/* Desktop Title */}
           <div className="hidden md:block h-8 text-xl md:text-2xl font-medium text-purple-400">
@@ -177,57 +182,60 @@ export default function Hero() {
             <AnimatedRole text={text} />
           </div>
 
-          <div className="min-h-16 block sm:hidden md:block">
+          <div className="min-h-22 text-[16px] block sm:hidden md:block">
             <TypewriterText
               text={DESCRIPTION}
-              speed={125}
-              startAfter={1500}
+              speed={100}
+              startAfter={50}
             />
           </div>
 
           {/* Button */}
           <div className="mt-8 flex gap-4">
-            <a
-              href="#contact"
-              className="px-6 py-3 text-sm text-slate-300 hover:text-white rounded-lg border border-white/10 transition"
-            >
-              Contact Me
-            </a>
+            <button>
+              <a
+                href="mailto:muhdid82@gmail.com"
+                className="cursor-pointer px-6 py-3 text-md text-slate-300 hover:text-white rounded-lg border border-white/30 transition"
+              >
+                Contact Me
+              </a>
+
+            </button>
           </div>
         </motion.div>
 
-      </div>
-    </section>
+      </div >
+    </section >
   );
 }
 
 
-function ThinkingBadge() {
-  return (
-    <motion.div
-      animate={{ opacity: [0.7, 1, 0.7] }}
-      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-      className="
-        relative
-        px-3 py-1.5
-        rounded-xl
-        bg-purple-950/30
-        backdrop-blur-md
-        border border-white/10
-        text-xs text-slate-200
-        shadow-inner
-        select-none
-      "
-    >
-      thinking
-      <motion.span
-        className="ml-0.5"
-        animate={{ opacity: [0, 1, 0] }}
-        transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
-      >
-        …
-      </motion.span>
-    </motion.div>
-  );
-}
+// function ThinkingBadge() {
+//   return (
+//     <motion.div
+//       animate={{ opacity: [0.7, 1, 0.7] }}
+//       transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+//       className="
+//         relative
+//         px-3 py-1.5
+//         rounded-xl
+//         bg-purple-950/30
+//         backdrop-blur-md
+//         border border-white/10
+//         text-xs text-slate-200
+//         shadow-inner
+//         select-none
+//       "
+//     >
+//       thinking
+//       <motion.span
+//         className="ml-0.5"
+//         animate={{ opacity: [0, 1, 0] }}
+//         transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+//       >
+//         …
+//       </motion.span>
+//     </motion.div>
+//   );
+// }
 

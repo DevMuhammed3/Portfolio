@@ -4,7 +4,7 @@ import { skillsData } from './skills.data'
 
 export default function MobileSkillsTimeline() {
   return (
-    <section className="px-6 py-20">
+    <section id='skills' className="px-6 py-20">
       {/* Title */}
       <h2 className="text-3xl font-bold mb-12">
         <span className="text-purple-600">/</span>Skills

@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { Mail, MapPin, Briefcase } from 'lucide-react';
 
 export default function ContactSection() {
   return (
@@ -46,14 +47,28 @@ export default function ContactSection() {
             </p>
 
             <div className="space-y-3 text-white/70">
-              <p>📧 muhdid82@gmail.com </p>
-              <p>📍 Egypt</p>
-              <p>💼 Available for freelance & full-time</p>
+              <p className="flex items-center gap-2">
+                <Mail size={18} className="text-purple-500" />
+                muhdid82@gmail.com
+              </p>
+
+              <p className="flex items-center gap-2">
+                <MapPin size={18} className="text-purple-500" />
+                Egypt
+              </p>
+
+              <p className="flex items-center gap-2">
+                <Briefcase size={18} className="text-purple-500" />
+                Available for freelance & full-time
+              </p>
             </div>
           </motion.div>
 
           {/* Form */}
           <motion.form
+            action="mailto:muhdid82@gmail.com"
+            method="POST"
+            encType="text/plain"
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
