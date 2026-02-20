@@ -1,9 +1,18 @@
 'use client'
 
+import { useState } from "react";
 import { motion } from 'framer-motion'
 import { Mail, MapPin, Briefcase } from 'lucide-react';
 
 export default function ContactSection() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText("muhdid82@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <section id="contact" className="relative py-32 overflow-hidden">
       {/* background glow */}
@@ -47,10 +56,18 @@ export default function ContactSection() {
             </p>
 
             <div className="space-y-3 text-white/70">
-              <p className="flex items-center gap-2">
+              <button
+                onClick={handleCopy}
+                className="flex items-center gap-2 text-white/70 hover:text-white transition cursor-pointer"
+              >
                 <Mail size={18} className="text-purple-500" />
                 muhdid82@gmail.com
-              </p>
+                {copied && (
+                  <span className="text-green-400 text-sm ml-2">
+                    Copied ✓
+                  </span>
+                )}
+              </button>
 
               <p className="flex items-center gap-2">
                 <MapPin size={18} className="text-purple-500" />
