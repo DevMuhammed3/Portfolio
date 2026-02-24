@@ -5,8 +5,14 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
+export const metadata = {
+  title: "Muhammed | FullStack Developer",
+  description: "developer portfolio",
+};
+
 // <ScrollGearController />
 // <GlobalCursor />
+
 export default function RootLayout({
   children,
 }: {
