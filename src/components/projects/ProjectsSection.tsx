@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRef } from 'react'
 import { projectsData } from './projects.data'
 import { motion, AnimatePresence, Variants } from 'framer-motion'
+import Link from 'next/link'
 
 const cardVariants: Variants = {
   hidden: {
@@ -37,7 +38,8 @@ export default function ProjectsSection() {
 
   const visibleProjects = showAll
     ? projectsData
-    : projectsData.slice(0, 3)
+    // show 2 projects
+    : projectsData.slice(0, 2)
 
 
   useEffect(() => {
@@ -56,7 +58,7 @@ export default function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="relative mx-auto min-h-screen px-8 md:px-24 py-40"
+      className="relative z-10 mx-auto min-h-screen px-8 lg:px-24 py-40"
     >
       {/* Header */}
       <div className="mb-24 max-w-2xl">
@@ -71,7 +73,9 @@ export default function ProjectsSection() {
       </div>
 
       {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20">
+
+      {/*show 2 projects*/}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-20">
         <AnimatePresence>
           {visibleProjects.map((project) => (
             <motion.div
@@ -89,6 +93,7 @@ export default function ProjectsSection() {
 
       {/* Show More Button */}
 
+      {/*show 2 projects*/}
       {projectsData.length > 3 && (
         <div className="mt-24 flex justify-center">
           <button
@@ -112,27 +117,32 @@ function ProjectCard({ project }: { project: any }) {
   const arrowRef = useRef<HTMLDivElement>(null)
   const [isHovering, setIsHovering] = useState(false)
 
-  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!arrowRef.current) return
 
-    const rect = e.currentTarget.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-
-    arrowRef.current.style.transform = `
-      translate3d(${x - 21}px, ${y - 21}px, 0)
-    `
-  }
 
   return (
-    <div className="group relative will-change-transform">
+    <div className="
+  group 
+  relative 
+  rounded-3xl 
+  border border-white/10 
+  bg-white/[0.02] 
+bg-neutral-900/60 border border-white/10
+  sm:min-w-[350px]
+  max-w-[850px]
+  p-4
+  transition-all duration-500
+  hover:border-purple-500/30
+  hover:bg-white/[0.04]
+">
       {/* Image wrapper */}
-      <div
+      <Link
+        href={project.liveUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative block h-[420px] overflow-hidden rounded-2xl bg-neutral-900 cursor-pointer"
         data-cursor="hover"
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
-        onMouseMove={handleMove}
-        className="relative h-[420px] overflow-hidden rounded-2xl bg-neutral-900"
       >
         {/* IMAGE */}
         <img
@@ -142,13 +152,21 @@ function ProjectCard({ project }: { project: any }) {
     absolute inset-0
     w-full h-full
     object-cover
-    transform-gpu
-    transition-transform duration-700 ease-[cubic-bezier(.19,1,.22,1)]
-    group-hover:scale-110
+    transition-transform ease-[cubic-bezier(.19,1,.22,1)]
+    group-hover:scale-105
+duration-300
     z-10
   "
         />
-
+        <div className="
+  absolute inset-0
+  bg-gradient-to-t
+  from-black/70 via-black/20 to-transparent
+  opacity-50
+  group-hover:opacity-80
+  transition-opacity duration-500
+  z-10
+"/>
         {/* ARROW */}
         <div
           ref={arrowRef}
@@ -167,7 +185,7 @@ function ProjectCard({ project }: { project: any }) {
         >
           <div className="project-cursor">↗</div>
         </div>
-      </div>
+      </Link>
 
       {/* Text */}
       <div className="mt-6">
@@ -178,6 +196,6 @@ function ProjectCard({ project }: { project: any }) {
           {project.description}
         </p>
       </div>
-    </div>
+    </div >
   )
 }

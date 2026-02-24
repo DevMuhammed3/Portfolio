@@ -36,7 +36,7 @@ export function SkillStage({
         <h3 className="text-xl font-semibold">{title}</h3>
         <span className="text-xs opacity-60">{subtitle}</span>
 
-        <p className="mt-3 text-sm opacity-80 leading-relaxed">
+        <p className="mt-3 text-md opacity-80 leading-relaxed">
           {description}
         </p>
 
@@ -44,7 +44,7 @@ export function SkillStage({
           {skills.map(skill => (
             <span
               key={skill}
-              className="text-xs px-3 py-1 rounded-full bg-white/10 border border-white/10"
+              className="text-[14px] px-3 py-1 rounded-full bg-white/10 border border-white/10"
             >
               {skill}
             </span>

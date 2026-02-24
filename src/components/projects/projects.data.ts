@@ -1,24 +1,27 @@
 export const projectsData = [
   {
     id: 1,
-    image: 'https://random.danielpetrica.com/api/random',
-    title: 'Realtime Chat App',
+    image: '/projects/openchat.png',
+    title: 'OpenChat',
     description:
-      'A real-time chat application with typing indicators, online status, and message delivery using WebSockets.',
+      'A real-time chat application built with React, TypeScript, and Next — fast, and modern messaging experience.',
     tech: [
       'Next.js',
       'React',
       'TypeScript',
       'WebSocket',
       'Node.js',
+      'Express.js',
+      'PostgreSQL',
     ],
-    githubUrl: 'https://github.com/username/realtime-chat',
-    liveUrl: 'https://realtime-chat.example.com',
+    githubUrl: 'https://github.com/DevMuhammed3/OpenChat',
+    liveUrl: 'https://openchat.qzz.io/',
   },
+
   {
     id: 2,
-    image: 'https://random.danielpetrica.com/api/random',
-    title: 'AI Chat Web App',
+    image: '/projects/BuildPortfolioV3.png',
+    title: 'AI Portfolio Builder',
     description:
       'Modern AI-powered chat interface with streaming responses, optimized performance, and clean UX.',
     tech: [

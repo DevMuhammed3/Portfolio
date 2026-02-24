@@ -102,7 +102,7 @@ transition-all duration-500
 mb-5
 ">
               <Image
-                src="/Muhammed.jpeg"
+                src="/MuhammadV2.png"
                 alt="Muhammad portrait"
                 width={360}
                 height={420}

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from 'framer-motion'
-import { Mail, MapPin, Briefcase } from 'lucide-react';
+import { Mail, MapPin, Briefcase, Check } from 'lucide-react';
 
 export default function ContactSection() {
   const [copied, setCopied] = useState(false);
@@ -11,6 +11,45 @@ export default function ContactSection() {
     await navigator.clipboard.writeText("muhdid82@gmail.com");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+    company: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setSuccess(false);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) throw new Error();
+
+      setSuccess(true);
+      setForm({ name: "", email: "", message: "", company: "" });
+    } catch {
+      alert("Something went wrong");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -63,8 +102,8 @@ export default function ContactSection() {
                 <Mail size={18} className="text-purple-500" />
                 muhdid82@gmail.com
                 {copied && (
-                  <span className="text-green-400 text-sm ml-2">
-                    Copied ✓
+                  <span className="flex flex-row gap-1 text-green-400 text-sm ml-2">
+                    Copied <Check size={20} />
                   </span>
                 )}
               </button>
@@ -83,37 +122,57 @@ export default function ContactSection() {
 
           {/* Form */}
           <motion.form
-            action="mailto:muhdid82@gmail.com"
-            method="POST"
-            encType="text/plain"
+            onSubmit={handleSubmit}
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="bg-white/5 backdrop-blur rounded-2xl p-8 space-y-6 border border-white/10"
           >
+
             <input
+              name="name"
+              value={form.name}
+              onChange={handleChange}
               placeholder="Your name"
               className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-purple-500"
             />
 
             <input
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
               placeholder="Email address"
               className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-purple-500"
             />
 
             <textarea
+              name="message"
+              value={form.message}
+              onChange={handleChange}
               rows={5}
               placeholder="Your message"
               className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-purple-500 resize-none"
             />
 
+            <input
+              type="text"
+              name="company"
+              value={form.company}
+              onChange={handleChange}
+              className="hidden"
+              autoComplete="off"
+            />
+
             <button
               type="submit"
-              className="w-full bg-purple-600 hover:bg-purple-700 transition rounded-xl py-3 font-semibold text-white"
+              disabled={loading}
+              className="w-full bg-purple-600 hover:bg-purple-700 transition rounded-xl py-3 font-semibold text-white disabled:opacity-50"
             >
-              Send Message
+              {loading ? "Sending..." : "Send Message"}
             </button>
+
           </motion.form>
         </div>
       </div>
