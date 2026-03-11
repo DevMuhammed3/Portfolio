@@ -25,6 +25,7 @@ export function SkillStage({
         className={`
           absolute
           ${isTop ? 'bottom-[60%]' : 'top-[60%]'}
+          h-fit
           w-[360px]
           rounded-2xl
           border border-white/10
@@ -44,7 +45,7 @@ export function SkillStage({
           {skills.map(skill => (
             <span
               key={skill}
-              className="text-[14px] px-3 py-1 rounded-full bg-white/10 border border-white/10"
+              className="text-[11px] px-3 py-1 rounded-full bg-white/10 border border-white/10"
             >
               {skill}
             </span>

@@ -35,8 +35,6 @@ export default function SkillsTimelineSection() {
       {/* Scroll space */}
       <div ref={scrollRef} className="h-[300vh]" />
 
-      {/* الخط */}
-
       <motion.div
         style={{ opacity: lineOpacity }}
         className="fixed inset-0 flex items-center pointer-events-none z-0"
